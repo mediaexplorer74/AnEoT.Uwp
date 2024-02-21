@@ -1,4 +1,4 @@
-[中文](README_CN.md) | [Official repository for AnEoT website](https://github.com/TCA-Arknights/aneot)
+[中文](README_CN.md) | [Русский](README_RU.md) | [Official repository for AnEoT website](https://github.com/TCA-Arknights/aneot)
 
 # Another End of Terra (AnEoT) - UWP
 
@@ -7,7 +7,8 @@ A fanmade literary journal based on mobile game *Arknights*, redesigned for Wind
 Notice: This is an unoffcial project, and this project is still in preview.
 
 ## Screenshot(s)
-![Win11Tiny](images/screenshot01.png)
+![](images/screenshot01.png)
+![](images/screenshot02.png)
 
 ## Build Instructions
 

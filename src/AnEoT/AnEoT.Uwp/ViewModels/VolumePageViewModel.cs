@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 using AnEoT.Uwp.Contracts;
 using AnEoT.Uwp.Models.Navigation;
 using AnEoT.Uwp.Services;
@@ -131,8 +132,16 @@ public sealed class VolumePageViewModel : NotificationObject
             VolumeInfo = volumeInfo;
 
             Uri uri = await FileHelper.GetVolumeCover(volumeInfo.RawName);
-            BitmapImage volCover = new(uri);
-            VolumeCover = volCover;
+
+            if (uri != null)
+            {
+                BitmapImage volCover = new BitmapImage(uri);
+                VolumeCover = volCover;
+            }
+            else
+            {
+                VolumeCover = default;
+            }
 
             string readmeMarkdown = await FileHelper.GetVolumeReadmeMarkdown(volumeInfo.RawName);
             MarkdownDocument doc = Markdown.Parse(readmeMarkdown, MarkdownHelper.Pipeline);
@@ -147,9 +156,15 @@ public sealed class VolumePageViewModel : NotificationObject
                 }
             }
         }
-        catch (DirectoryNotFoundException)
+        catch (Exception ex)//(DirectoryNotFoundException)
         {
-            SetInfoBar("指定的期刊无效", "请检查输入的期刊名称是否正确", true, InfoBarSeverity.Error);
+            Debug.WriteLine("[ex] PreparePage exception: " + ex.Message);
+
+            //SetInfoBar("指定的期刊无效", "请检查输入的期刊名称是否正确", true, InfoBarSeverity.Error);
+            SetInfoBar(
+                "The designated journal is invalid", 
+                "Please check if the journal name you entered is correct", 
+                true, InfoBarSeverity.Error);
         }
     }
 
