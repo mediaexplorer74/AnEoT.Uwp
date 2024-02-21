@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnEoT.Uwp", "src\AnEoT.Uwp\AnEoT.Uwp.csproj", "{BCEA18E1-2F01-4782-A17B-45F2B63437C4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnEoT.Uwp", "AnEoT\AnEoT.Uwp\AnEoT.Uwp.csproj", "{BCEA18E1-2F01-4782-A17B-45F2B63437C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationsVisualizerLibrary", "src\NotificationsVisualizerLibrary\NotificationsVisualizerLibrary.csproj", "{220F3A47-BEC1-40EF-BE2D-98A8345AB983}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationsVisualizerLibrary", "AnEoT\NotificationsVisualizerLibrary\NotificationsVisualizerLibrary.csproj", "{220F3A47-BEC1-40EF-BE2D-98A8345AB983}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution Files", "{FA3FC483-6719-4951-A22E-0161C07E2B74}"
 	ProjectSection(SolutionItems) = preProject

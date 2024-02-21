@@ -64,53 +64,66 @@ public sealed class MainReadPageViewModel : NotificationObject
     public async Task<IEnumerable<XmlDocument>> GetLatestVolumeTilesAsync()
     {
         VolumeDetail info = await volumeProvider.GetLatestVolumeAsync();
-        List<XmlDocument> xmlDocuments = new(info.Articles.Count());
 
+        if (info.Articles != null)
         {
-            string[] splitedTitle = info.Name.Split(new char[] { '：', ':' }, StringSplitOptions.RemoveEmptyEntries);
-            AdaptiveTileBuilder mainTileBuilder = new();
-            mainTileBuilder.ConfigureDisplayName("最新一期");
-            mainTileBuilder.TileLarge
-                .AddBackgroundImage("https://aneot.terrach.net/hero/3.webp", 50)
-                .AddAdaptiveText(splitedTitle[0], true, AdaptiveTextStyle.Base);
+            List<XmlDocument> xmlDocuments = new List<XmlDocument>(info.Articles.Count());
 
-            if (splitedTitle.Length > 1)
             {
-                //主题刊
-                //我们在这里将主题名称单列一行
-                mainTileBuilder.TileLarge.AddAdaptiveText(splitedTitle[1], true, AdaptiveTextStyle.Base);
+                string[] splitedTitle = info.Name.Split(new char[] { '：', ':' }, StringSplitOptions.RemoveEmptyEntries);
+                AdaptiveTileBuilder mainTileBuilder = new();
+                mainTileBuilder.ConfigureDisplayName("最新一期");
+                mainTileBuilder.TileLarge
+                    .AddBackgroundImage("https://aneot.terrach.net/hero/3.webp", 50)
+                    .AddAdaptiveText(splitedTitle[0], true, AdaptiveTextStyle.Base);
+
+                if (splitedTitle.Length > 1)
+                {
+                    //主题刊
+                    //我们在这里将主题名称单列一行
+                    mainTileBuilder.TileLarge.AddAdaptiveText(splitedTitle[1], true, AdaptiveTextStyle.Base);
+                }
+
+                xmlDocuments.Add(mainTileBuilder.BuildXml());
             }
 
-            xmlDocuments.Add(mainTileBuilder.BuildXml());
-        }
+            foreach (ArticleDetail article in info.Articles)
+            {
+                MarkdownDocument markdownDoc = Markdown.Parse(article.MarkdownContent, MarkdownHelper.Pipeline);
+                LinkInline img = markdownDoc.Descendants<LinkInline>().FirstOrDefault(link => link.IsImage);
 
-        foreach (ArticleDetail article in info.Articles)
+                AdaptiveTileBuilder tileBuilder = new();
+
+                if (img is not null)
+                {
+                    Uri uri = new(new Uri(resourceProvider.BaseUri, UriKind.Absolute),
+                        $"{info.RawName}/{img.Url}");
+
+                    string imgUri = uri.ToString();
+                    tileBuilder.TileLarge.AddBackgroundImage(imgUri, 60);
+                }
+
+                tileBuilder.ConfigureDisplayName("最新一期");
+                tileBuilder.TileLarge
+                    .AddAdaptiveText(article.Title, true);
+
+                if (string.IsNullOrWhiteSpace(article.Description) != true)
+                {
+                    tileBuilder.TileLarge.AddAdaptiveText(MarkdownHelper.ToPlainText(article.Description), 
+                        true, AdaptiveTextStyle.CaptionSubtle);
+                }
+
+                xmlDocuments.Add(tileBuilder.BuildXml());
+            }
+
+            return xmlDocuments;
+        }
+        else
         {
-            MarkdownDocument markdownDoc = Markdown.Parse(article.MarkdownContent, MarkdownHelper.Pipeline);
-            LinkInline img = markdownDoc.Descendants<LinkInline>().FirstOrDefault(link => link.IsImage);
+            List<XmlDocument> xmlDocuments = new List<XmlDocument>(0);
 
-            AdaptiveTileBuilder tileBuilder = new();
-
-            if (img is not null)
-            {
-                Uri uri = new(new Uri(resourceProvider.BaseUri, UriKind.Absolute), $"{info.RawName}/{img.Url}");
-                string imgUri = uri.ToString();
-                tileBuilder.TileLarge.AddBackgroundImage(imgUri, 60);
-            }
-
-            tileBuilder.ConfigureDisplayName("最新一期");
-            tileBuilder.TileLarge
-                .AddAdaptiveText(article.Title, true);
-
-            if (string.IsNullOrWhiteSpace(article.Description) != true)
-            {
-                tileBuilder.TileLarge.AddAdaptiveText(MarkdownHelper.ToPlainText(article.Description), true, AdaptiveTextStyle.CaptionSubtle);
-            }
-
-            xmlDocuments.Add(tileBuilder.BuildXml());
-        }
-
-        return xmlDocuments;
+            return xmlDocuments;
+        }        
     }
 
     public void CreateDefaultTileAsync(PreviewTile tile)
@@ -118,24 +131,30 @@ public sealed class MainReadPageViewModel : NotificationObject
         AdaptiveTileBuilder builder = new();
         builder.TileSmall
             .ConfigureTextStacking(TileTextStacking.Center)
-            .AddAdaptiveText("🤔", hintStyle: AdaptiveTextStyle.Subtitle, hintAlign: AdaptiveTextAlign.Center);
+            .AddAdaptiveText("🤔", hintStyle: AdaptiveTextStyle.Subtitle, 
+            hintAlign: AdaptiveTextAlign.Center);
         builder.TileMedium
             .ConfigureTextStacking(TileTextStacking.Center)
-            .AddAdaptiveText("🤔正在构思...", hintStyle: AdaptiveTextStyle.Caption, hintAlign: AdaptiveTextAlign.Center);
+            .AddAdaptiveText("🤔正在构思...", hintStyle: AdaptiveTextStyle.Caption, 
+            hintAlign: AdaptiveTextAlign.Center);
         builder.TileWide
             .ConfigureTextStacking(TileTextStacking.Center)
-            .AddAdaptiveText("🤔正在构思...", hintStyle: AdaptiveTextStyle.Subtitle, hintAlign: AdaptiveTextAlign.Center);
+            .AddAdaptiveText("🤔正在构思...", hintStyle: AdaptiveTextStyle.Subtitle, 
+            hintAlign: AdaptiveTextAlign.Center);
         builder.TileLarge
             .ConfigureTextStacking(TileTextStacking.Center)
             .AddAdaptiveText("🤔", hintStyle: AdaptiveTextStyle.Header, hintAlign: AdaptiveTextAlign.Center)
-            .AddAdaptiveText("正在构思...", hintStyle: AdaptiveTextStyle.Subheader, hintAlign: AdaptiveTextAlign.Center);
+            .AddAdaptiveText("正在构思...", hintStyle: AdaptiveTextStyle.Subheader, 
+            hintAlign: AdaptiveTextAlign.Center);
 
         UpdateTile(builder.BuildXml(), tile);
     }
 
     public void CreateRssTileAsync(PreviewTile rssTile)
     {
-        rssTile.VisualElements.BackgroundColor = (Color)XamlBindingHelper.ConvertValue(typeof(Color), "#64fb9f0b");
+        rssTile.VisualElements.BackgroundColor 
+            = (Color)XamlBindingHelper.ConvertValue(typeof(Color), "#64fb9f0b");
+
         TileContent content = new()
         {
             Visual = new TileVisual()

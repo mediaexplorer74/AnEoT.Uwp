@@ -1,49 +1,58 @@
-﻿[English](README-EN.md) | [《回归线》官方网页版仓库](https://github.com/TCA-Arknights/aneot)
+[中文](README_CN.md) | [Official repository for AnEoT website](https://github.com/TCA-Arknights/aneot)
 
-# 回归线 - UWP 客户端
+# Another End of Terra (AnEoT) - UWP
 
-《明日方舟》同人文学期刊《回归线》，现在为 Windows 10 设备设计。
+A fanmade literary journal based on mobile game *Arknights*, redesigned for Windows 10 devices.
 
-请注意，这是一个非官方项目，并且该项目仍然处于早期版本
+Notice: This is an unoffcial project, and this project is still in preview.
 
-## 构建指引
+## Screenshot(s)
+![Win11Tiny](images/screenshot01.png)
 
-- 克隆本仓库
-- 确保安装以下组件
+## Build Instructions
+
+- Clone the repository locally
+- Make sure the following components are available on your computer
     - Visual Studio 2022
-    - Windows 10 SDK，版本 2004 (10.0.19041.0)
+    - Windows 10 SDK，version 2004 (10.0.19041.0)
     - .NET 7 SDK
-- 使用 Visual Studio 打开文件夹中的 ```AnEoT.Vintage.sln``` 文件，并运行项目
+- Open ```AnEoT.Vintage.sln``` file with Visual Studio and run this project
 
-请尽情地使用吧。
+Enjoy~
 
-## 系统要求
-此应用支持的最低系统版本为 Windows 10 1703（15063）
+## System requirements
+The lowest supported version is Windows 10 1703（15063）
 
-## 关于我们
+## About Us
 
-如果程序中有任何问题，或者您有任何意见，欢迎打开一个新的 Issue。
+If there are any errors in the app or you have any comments,
 
-<!-- 由于此项目目前不由TCA管理，我们暂时注释了下面的提示 -->
+You can open a new issue.
+
+<!-- This is not an official project yet, so we remove the following notice temporarily -->
 
 <!--
-若您想加入我们，请向 [TCA_doc@163.com](mailto:TCA_doc@163.com) 发送电子邮件来联系我们。
+If you would like to join us,
 
-*请注意，由于安全原因，我们目前不接受来自外部人员的提交*
+Please use the email address [TCA_doc@163.com](mailto:TCA_doc@163.com) Contact us.
+
+*Note that for security reasons we do not accept submissions from non-collaborators*
 -->
 
-## 关于版权
+## About copyright
 
-我们仅授予您按原样保存和共享的权利。同时，您必须遵守以下要求：
+We only grant you the right to save and share as is. At the same time you must comply with the following requirements:
 
-**署名** —  您必须给出适当的署名，同时标明是否对原始作品作了修改。您可以用任何合理的方式来署名，但是不得以任何方式暗示许可人为您或您的使用背书。
+**Attribution** — You must give appropriate credit, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
 
-**非商业性使用** — 您不得将材料用于商业目的。
+**Non Commercial** — You may not use the material for commercial purposes.
 
-**禁止演绎** — 如果您再混合、转换、或者基于该作品创作，您不可以分发修改作品。
+**No Derivatives** — If you remix, transform, or build upon the material, you may not distribute the modified material.
 
-**禁止用于模型训练** — 本刊所有内容不得用于人工智能生成模型训练，包括但不限于个人、科研、教学和商业化应用。
+**Refuse to train the model** — It shall not be used for any purpose artificial intelligence generation model training, including but not limited to personal, scientific research, teaching and commercial applications.
 
-我们保留所有未授予您的权利，如果您违反上述要求，我们将撤回授予您的所有权利。
+We reserve all rights not granted to you, and if you violate the above requirements, we will withdraw all rights granted to you.
 
-**Copyright © 2022-2023 All Rights Reserved**
+**Copyright © 2022-2024 All Rights Reserved**
+
+-- forked from [Baka632/AnEoT.Uwp](https://github.com/Baka632/AnEoT.Uwp) by [M.E.](https://github.com/mediaexplorer74) 

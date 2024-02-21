@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AnEoT.Uwp</RootNamespace>
     <AssemblyName>AnEoT.Uwp</AssemblyName>
-    <DefaultLanguage>zh-CN</DefaultLanguage>
+    <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.15063.0</TargetPlatformMinVersion>
@@ -19,8 +19,8 @@
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
-    <PackageCertificateThumbprint>70211FC3C97E403131B9A07F4D5F11FB3C59A2A4</PackageCertificateThumbprint>
-    <PackageCertificateKeyFile />
+    <!--PackageCertificateThumbprint>70211FC3C97E403131B9A07F4D5F11FB3C59A2A4</PackageCertificateThumbprint>
+                                                                                           <PackageCertificateKeyFile /-->
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
@@ -28,6 +28,8 @@
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|arm</AppxBundlePlatforms>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+    <PackageCertificateThumbprint>61AB7D2AA3803A0252D052E5BCC4A86049359998</PackageCertificateThumbprint>
+    <PackageCertificateKeyFile>AnEoT.Uwp_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -521,6 +523,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Fonts\LXGWWenKaiScreenR.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AnEoT.Uwp_TemporaryKey.pfx" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

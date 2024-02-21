@@ -1,6 +1,7 @@
 ﻿using AnEoT.Uwp.Contracts;
 using AnEoT.Uwp.Helpers.Comparer;
 using AnEoT.Uwp.Models.Markdown;
+using System.Diagnostics;
 using Windows.Storage;
 using Windows.Storage.Search;
 using YamlDotNet.Core.Tokens;
@@ -51,7 +52,8 @@ public readonly struct FileVolumeProvider : IVolumeProvider
     public async Task<VolumeDetail> GetLatestVolumeAsync()
     {
         StorageFolder baseFolder = await StorageFolder.GetFolderFromPathAsync(CurrentPath);
-        StorageFolder volumeFolder = (await baseFolder.GetFoldersAsync()).OrderBy(file => file.DisplayName).Reverse().FirstOrDefault();
+        StorageFolder volumeFolder = 
+            (await baseFolder.GetFoldersAsync()).OrderBy(file => file.DisplayName).Reverse().FirstOrDefault();
 
         if (volumeFolder is null)
         {
@@ -117,8 +119,12 @@ public readonly struct FileVolumeProvider : IVolumeProvider
         }
         else
         {
-            throw new ArgumentException("使用指定的参数，无法获取指定期刊");
+            //throw new ArgumentException("使用指定的参数，无法获取指定期刊");
+            Debug.WriteLine("[i] 使用指定的参数，无法获取指定期刊 " +
+                "/ Using the specified parameters, the specified journal cannot be obtained");
+            
         }
+        return default;
     }
 
     private static async Task<VolumeInfo> GetVolumeInfoFromStorageFolderAsync(StorageFolder volumeFolder)

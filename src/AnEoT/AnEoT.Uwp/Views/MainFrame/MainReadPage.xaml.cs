@@ -1,5 +1,6 @@
 ﻿using AnEoT.Uwp.ViewModels.MainFrame;
 using NotificationsVisualizerLibrary;
+using System.Diagnostics;
 using Windows.Data.Xml.Dom;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
@@ -40,7 +41,21 @@ public sealed partial class MainReadPage : Page
 
         _latestVolumeTileContents = (await ViewModel.GetLatestVolumeTilesAsync()).ToArray();
         _latestVolumeTileContentIndex = 0;
-        await SetLatestVolumeTile(_latestVolumeTileContents.First());
+
+        if (_latestVolumeTileContents.Length != 0)
+        {
+            XmlDocument FirstItem = default;
+            try
+            {
+                FirstItem = _latestVolumeTileContents.First();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("[ex] MainReadPage - SetupTile ex.: " + ex.Message);
+            }
+
+            await SetLatestVolumeTile(FirstItem);
+        }
     }
 
     private async void ScrollViewer_KeyDown(object sender, KeyRoutedEventArgs e)

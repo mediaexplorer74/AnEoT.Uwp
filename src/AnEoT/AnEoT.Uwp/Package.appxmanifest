@@ -8,8 +8,8 @@
   IgnorableNamespaces="uap mp uap3">
 
   <Identity
-    Name="Baka632.AnEoT.Uwp"
-    Publisher="CN=Baka632"
+    Name="Baka632.AnEoT.UwpV1"
+    Publisher="CN=Admin"
     Version="1.0.7.0" />
 
   <mp:PhoneIdentity PhoneProductId="34386826-6168-4725-823f-8e2e6b8b3939" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
@@ -47,6 +47,10 @@
         </uap:DefaultTile >
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
         <uap:LockScreen BadgeLogo="Assets\BadgeLogo.png" Notification="badge"/>
+        <uap:InitialRotationPreference>
+          <uap:Rotation Preference="landscape"/>
+          <uap:Rotation Preference="portrait"/>
+          <uap:Rotation Preference="landscapeFlipped"/></uap:InitialRotationPreference>
       </uap:VisualElements>
       <Extensions>
         <uap:Extension Category="windows.protocol">
@@ -60,5 +64,7 @@
 
   <Capabilities>
     <Capability Name="internetClient" />
+    <uap3:Capability Name="remoteSystem"/>
+    <uap:Capability Name="removableStorage"/>
   </Capabilities>
 </Package>
