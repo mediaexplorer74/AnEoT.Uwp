@@ -7,8 +7,10 @@ A fanmade literary journal based on mobile game *Arknights*, redesigned for Wind
 Notice: This is an unoffcial project, and this project is still in preview.
 
 ## Screenshot(s)
-![](images/screenshot01.png)
-![](images/screenshot02.png)
+![Desktop](images/screenshot01.png)
+![Desktop](images/screenshot02.png)
+![Mobile](images/screenshot03.png)
+![Mobile](images/screenshot04.png)
 
 ## Build Instructions
 
